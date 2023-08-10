@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+</head>
+<body>
+    <h1>クイズゲーム</h1>
+    <div id="question"></div>
+    <button onclick="checkAnswer(true)">True</button>
+    <button onclick="checkAnswer(false)">False</button>
+    <p id="result"></p>
+
+    <script>
+        let currentQuestion = 0;
+        let questions = [
+            { text: "地球は平らだ。", answer: false },
+            { text: "犬は哺乳類である。", answer: true },
+            { text: "日本の首都は東京である。", answer: true }
+        ];
+
+        function displayQuestion() {
+            document.getElementById("question").innerText = questions[currentQuestion].text;
+            document.getElementById("result").innerText = "";
+        }
+
+        function checkAnswer(userAnswer) {
+            if (userAnswer === questions[currentQuestion].answer) {
+                document.getElementById("result").innerText = "正解！";
+            } else {
+                document.getElementById("result").innerText = "不正解...";
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                displayQuestion();
+            } else {
+                document.getElementById("question").innerText = "クイズ終了！";
+            }
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>
